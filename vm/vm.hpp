@@ -634,6 +634,7 @@ struct factor_vm {
   void primitive_dlclose();
   void primitive_dll_validp();
   char* alien_offset(cell obj);
+  cell from_medium_struct(cell x1, cell x2, cell x3, cell x4, cell size);
 
   // quotations
   void primitive_jit_compile();

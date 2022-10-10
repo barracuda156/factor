@@ -175,4 +175,22 @@ char* factor_vm::alien_offset(cell obj) {
   }
 }
 
+// TODO: This does not work, see header too.
+/* On OS X/PPC, complex numbers are returned in registers.
+cell factor_vm::from_medium_struct(cell x1, cell x2, cell x3, cell x4, cell size)
+{
+	cell data[4];
+	data[0] = x1;
+	data[1] = x2;
+	data[2] = x3;
+	data[3] = x4;
+	return from_value_struct(data,size);
+}
+
+VM_C_API cell from_medium_struct(cell x1, cell x2, cell x3, cell x4, cell size, factor_vm *parent)
+{
+	return parent->from_medium_struct(x1, x2, x3, x4, size);
+}
+ */
+
 }

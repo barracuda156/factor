@@ -1,0 +1,6 @@
+include vm/Config.macosx
+include vm/Config.ppc.32
+
+PLAF_MASTER_HEADERS += vm/os-macosx-ppc.hpp
+
+SITE_CFLAGS += -arch ppc -force_cpusubtype_ALL -mmacosx-version-min=10.5

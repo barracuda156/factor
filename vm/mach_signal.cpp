@@ -12,6 +12,10 @@
 
 #include "master.hpp"
 
+#if defined __APPLE__
+#include <AvailabilityMacros.h>
+#endif
+
 namespace factor {
 
 // The exception port on which our thread listens.
@@ -61,9 +65,11 @@ void factor_vm::call_fault_handler(exception_type_t exception,
 
   FACTOR_ASSERT(handler != 0);
 
+#if MAC_OS_X_VERSION_MIN_REQUIRED > 1060
   dispatch_signal_handler((cell*)&MACH_STACK_POINTER(thread_state),
                           (cell*)&MACH_PROGRAM_COUNTER(thread_state),
                           (cell)handler);
+#endif
 }
 
 static void call_fault_handler(mach_port_t thread, exception_type_t exception,

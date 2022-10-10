@@ -1,0 +1,6 @@
+include vm/Config.macosx
+include vm/Config.ppc.64
+
+PLAF_MASTER_HEADERS += vm/os-macosx-ppc.64.hpp
+
+SITE_CFLAGS += -arch ppc64 -mmacosx-version-min=10.5

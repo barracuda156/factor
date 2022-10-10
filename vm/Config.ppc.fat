@@ -1,0 +1,2 @@
+PLAF_DLL_OBJS += vm/cpu-ppc.macosx.o
+PLAF_MASTER_HEADERS += vm/cpu-ppc.hpp

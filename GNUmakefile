@@ -165,6 +165,9 @@ help:
 	@echo "linux-arm-64"
 	@echo "freebsd-x86-32"
 	@echo "freebsd-x86-64"
+	@echo "macosx-ppc-32"
+	@echo "macosx-ppc-64"
+	@echo "macosx-ppc-fat"
 	@echo "macosx-x86-32"
 	@echo "macosx-x86-64"
 	@echo "macosx-x86-fat"
@@ -186,6 +189,15 @@ freebsd-x86-32:
 
 freebsd-x86-64:
 	$(MAKE) $(ALL) CONFIG=vm/Config.freebsd.x86.64
+
+macosx-ppc-32:
+	$(MAKE) $(ALL) macosx.app CONFIG=vm/Config.macosx.ppc.32
+
+macosx-ppc-64:
+	$(MAKE) $(ALL) macosx.app CONFIG=vm/Config.macosx.ppc.64
+
+macosx-ppc-fat:
+	$(MAKE) $(ALL) macosx.app CONFIG=vm/Config.macosx.ppc.fat
 
 macosx-x86-32:
 	$(MAKE) $(ALL) macosx.app CONFIG=vm/Config.macosx.x86.32
@@ -284,4 +296,4 @@ clean:
 	rm -f Factor.app/Contents/Frameworks/libfactor.dylib
 
 .PHONY: factor factor-lib factor-console factor-ffi-test tags clean macosx.app
-.PHONY: linux-x86-32 linux-x86-64 linux-ppc-32 linux-ppc-64 linux-arm-64 freebsd-x86-32 freebsd-x86-64 macosx-x86-32 macosx-x86-64 macosx-x86-fat macosx-arm64 windows-x86-32 windows-x86-64
+.PHONY: linux-x86-32 linux-x86-64 linux-ppc-32 linux-ppc-64 linux-arm-64 freebsd-x86-32 freebsd-x86-64 macosx-ppc-32 macosx-ppc-64 macosx-ppc-fat macosx-x86-32 macosx-x86-64 macosx-x86-fat macosx-arm64 windows-x86-32 windows-x86-64

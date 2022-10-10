@@ -72,12 +72,11 @@
 #define FACTOR_64
 #elif defined(i386) || defined(__i386) || defined(__i386__) || defined(_M_IX86)
 #define FACTOR_X86
-#elif(defined(__POWERPC__) || defined(__ppc__) || defined(_ARCH_PPC)) && \
-    (defined(__PPC64__) || defined(__64BIT__))
+#elif(defined(__POWERPC__) || defined(_ARCH_PPC)) && (defined(__ppc64__) || defined(__PPC64__) || defined(__64BIT__))
 #define FACTOR_PPC64
 #define FACTOR_PPC
 #define FACTOR_64
-#elif defined(__POWERPC__) || defined(__ppc__) || defined(_ARCH_PPC)
+#elif (defined(__POWERPC__) && defined(__ppc__)) || defined(_ARCH_PPC)
 #define FACTOR_PPC32
 #define FACTOR_PPC
 #else
@@ -129,6 +128,7 @@ namespace factor { struct factor_vm; }
 #include "float_bits.hpp"
 #include "io.hpp"
 #include "image.hpp"
+#include "alien.hpp"
 #include "callbacks.hpp"
 #include "dispatch.hpp"
 #include "vm.hpp"

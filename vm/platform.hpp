@@ -24,6 +24,10 @@
       #include "os-macosx-x86.64.hpp"
     #elif defined(FACTOR_ARM64)
       #include "os-macosx-arm64.hpp"
+      #elif defined(FACTOR_PPC64)
+        #include "os-macosx-ppc.hpp"
+      #elif defined(FACTOR_PPC32)
+        #include "os-macosx-ppc.hpp"
     #else
       #error "Unsupported Mac OS X flavor"
     #endif

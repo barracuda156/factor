@@ -1,5 +1,9 @@
 #include "master.hpp"
 
+#if defined __APPLE__
+#include <AvailabilityMacros.h>
+#endif
+
 namespace factor {
 
 bool set_memory_locked(cell base, cell size, bool locked) {
@@ -124,11 +128,13 @@ void factor_vm::end_sampling_profiler_timer() {
   setitimer(ITIMER_REAL, &timer, NULL);
 }
 
+#if defined(__APPLE__) && MAC_OS_X_VERSION_MIN_REQUIRED > 1060
 void factor_vm::dispatch_signal(void* uap, void(handler)()) {
   dispatch_signal_handler((cell*)&UAP_STACK_POINTER(uap),
                           (cell*)&UAP_PROGRAM_COUNTER(uap),
                           (cell)FUNCTION_CODE_POINTER(handler));
 }
+#endif
 
 void memory_signal_handler(int signal, siginfo_t* siginfo, void* uap) {
   (void) signal;

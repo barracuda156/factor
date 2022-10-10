@@ -300,6 +300,7 @@ find_architecture() {
        i686) ARCH=x86 ;;
        i86pc) ARCH=x86 ;;
        amd64) ARCH=x86 ;;
+       ppc) ARCH=ppc ;;
        ppc64) ARCH=ppc ;;
        *86) ARCH=x86 ;;
        *86_64) ARCH=x86 ;;
@@ -335,8 +336,8 @@ find_word_size() {
 }
 
 find_word_size_cpp() {
-    SIXTY_FOUR='defined(__aarch64__) || defined(__x86_64__) || defined(_M_AMD64) || defined(__PPC64__) || defined(__64BIT__)'
-    THIRTY_TWO='defined(i386) || defined(__i386) || defined(__i386__) || defined(_MIX86)'
+    SIXTY_FOUR='defined(__aarch64__) || defined(__x86_64__) || defined(_M_AMD64) || defined(__ppc64__) || defined(__PPC64__) || defined(__64BIT__)'
+    THIRTY_TWO='defined(i386) || defined(__i386) || defined(__i386__) || defined(_MIX86) || defined(__ppc__)'
     $CC -E -xc <(echo -e "#if ${SIXTY_FOUR}\n64\n#elif ${THIRTY_TWO}\n32\n#endif") | tail -1
 }
 
@@ -424,6 +425,12 @@ set_build_info() {
     elif [[ $OS == linux && $ARCH == arm64 ]] ; then
         MAKE_IMAGE_TARGET=unix-arm.64
         MAKE_TARGET=linux-arm-64
+    elif [[ $OS == macosx && $ARCH == ppc ]] ; then
+        MAKE_IMAGE_TARGET=macosx-ppc.32
+        MAKE_TARGET=macosx-ppc-32
+    elif [[ $OS == macosx && $ARCH == ppc64 ]] ; then
+        MAKE_IMAGE_TARGET=macosx-ppc.64
+        MAKE_TARGET=macosx-ppc-64
     elif [[ $OS == macosx && $ARCH == arm64 ]] ; then
         MAKE_IMAGE_TARGET=unix-arm.64
         MAKE_TARGET=macosx-arm64
